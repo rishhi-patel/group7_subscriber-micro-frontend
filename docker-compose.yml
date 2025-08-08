@@ -5,7 +5,7 @@ services:
       db:
         condition: service_healthy # Wait until the 'db' service reports as healthy    
     ports:
-      - 8082:8082
+      - 8082:8080
     environment:
       - DBHOST=db
   db:

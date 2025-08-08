@@ -57,4 +57,4 @@ async def create_subscriber(subscriber: Subscriber):
 app.mount("/", StaticFiles(directory="dist"), name="static")
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8082, log_level="info")
+    uvicorn.run(app, host="0.0.0.0", port=8080, log_level="info")
