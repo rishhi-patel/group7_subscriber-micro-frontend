@@ -4,16 +4,17 @@ from fastapi.staticfiles import StaticFiles
 import uvicorn
 from pydantic import BaseModel
 import mysql.connector
+import os
 
 
 app = FastAPI()
 
  # Database configuration (replace with your credentials)
 DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",
-    "password": "Secret5555",
-    "database": "subscribers"
+    "host": os.environ.get("DBHOST", "localhost"),
+    "user": os.environ.get("DBUSER", "root"),
+    "password": os.environ.get("DBPASS", "Secret5555"),
+    "database": os.environ.get("DBNAME", "subscribers")
 }
 
 # Pydantic model for the data to be inserted
