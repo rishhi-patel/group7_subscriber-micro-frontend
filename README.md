@@ -1,5 +1,7 @@
-# PROG8850Week1Installation
-install mysql, python
+# Subscriber micro frontend
+autonomous component to add names to a subscriber database
+
+To set up the environment
 
 ```bash
 ansible-playbook up.yml
@@ -11,7 +13,7 @@ To use mysql:
 mysql -u root -h 127.0.0.1 -p
 ```
 
-To run github actions like (notice that the environment variables default for the local case):
+To run github action with flyway migration (notice that the environment variables default for the local case):
 
 ```yaml
     steps:
@@ -32,13 +34,13 @@ To run github actions like (notice that the environment variables default for th
 
 locally:
 
-first try
+to run act in a container
 
 ```bash
 bin/act
 ```
 
-then if that doesn't work 
+to run act in the host address space to conserve resource 
 
 ```bash
 bin/act -P ubuntu-latest=-self-hosted
@@ -59,3 +61,19 @@ docker run --rm -v "/workspaces/<repo name>/migrations:/flyway/sql" redgate/flyw
 ```
 
 This is a reproducible mysql setup, with a flyway migration. It is also the start of an example of using flyway and github actions together. Flyway (jdbc) needs the database to exist. The github action creates it if it doesn't exist and flyway takes over from there.
+
+There is also a micro frontend ui. For development it is run in 2 terminal windows.
+
+1. To compile the javascript:
+
+```bash
+npm run watch
+```
+
+2. To run the fastapi server code:
+
+```bash
+python app.py
+```
+
+There is an index.html that includes the microfrontend for testing.

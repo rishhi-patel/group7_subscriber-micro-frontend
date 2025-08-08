@@ -1,0 +1,23 @@
+{
+  "name": "subscriber-micro-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --base=./",
+    "preview": "vite preview",
+    "watch": "vite build --base=./ --watch"
+  },
+  "dependencies": {
+    "@rhildred/preact-custom-element": "^4.3.1",
+    "preact": "^10.26.2",
+    "react-bulma-components": "^4.1.0"
+  },
+  "devDependencies": {
+    "@picocss/pico": "^2.1.1",
+    "@preact/preset-vite": "^2.10.1",
+    "sass-embedded": "^1.86.3",
+    "vite": "^6.2.0"
+  }
+}
