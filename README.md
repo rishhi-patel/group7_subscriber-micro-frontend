@@ -1,5 +1,8 @@
 # Subscriber Micro‑Frontend
 
+![1755276590118](image/README/1755276590118.png)
+![1755277112426](image/README/1755277112426.png)
+
 Autonomous micro‑frontend to collect subscribers and store them in MySQL. Includes:
 
 - **MySQL + Adminer** (Docker Compose, orchestrated by Ansible)
