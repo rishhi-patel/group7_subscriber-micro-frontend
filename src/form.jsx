@@ -34,18 +34,47 @@ export function SubscriberForm() {
   return (
     <div
       style={{
-        maxWidth: 400,
-        margin: "40px auto",
-        padding: 32,
-        background: "linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%)",
-        borderRadius: 16,
-        boxShadow: "0 4px 24px rgba(60,72,88,0.12)",
+        maxWidth: 420,
+        margin: "48px auto",
+        padding: 40,
+        background: "linear-gradient(135deg, #f3f4f6 0%, #dbeafe 100%)",
+        borderRadius: 24,
+        boxShadow: "0 8px 32px rgba(60,72,88,0.18)",
         fontFamily: "Segoe UI, Arial, sans-serif",
+        border: "1px solid #e0e7ff",
+        position: "relative",
       }}
     >
-      <h2 style={{ textAlign: "center", marginBottom: 24, color: "#3730a3" }}>
-        Subscribe to Updates
-      </h2>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: 28,
+        }}
+      >
+        <svg
+          width="38"
+          height="38"
+          viewBox="0 0 24 24"
+          fill="none"
+          style={{ marginRight: 10 }}
+        >
+          <circle cx="12" cy="12" r="12" fill="#6366f1" />
+          <path
+            d="M7 12l3 3 7-7"
+            stroke="#fff"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <h2
+          style={{ margin: 0, color: "#3730a3", fontWeight: 700, fontSize: 26 }}
+        >
+          Subscribe to Updates
+        </h2>
+      </div>
       <form
         onSubmit={(event) => {
           event.preventDefault()
@@ -115,28 +144,29 @@ export function SubscriberForm() {
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: 18,
+          gap: 22,
         }}
       >
-        <label style={{ fontWeight: 500, color: "#3730a3" }}>
+        <label style={{ fontWeight: 600, color: "#3730a3", fontSize: 16 }}>
           Name
           <input
             name="name"
             placeholder="Your name"
             required
             style={{
-              marginTop: 6,
-              padding: "10px 12px",
-              borderRadius: 8,
-              border: "1px solid #c7d2fe",
-              fontSize: 16,
+              marginTop: 8,
+              padding: "12px 14px",
+              borderRadius: 10,
+              border: "1.5px solid #a5b4fc",
+              fontSize: 17,
               outline: "none",
               background: "#fff",
+              boxShadow: "0 1px 4px rgba(99,102,241,0.07)",
               transition: "border 0.2s",
             }}
           />
         </label>
-        <label style={{ fontWeight: 500, color: "#3730a3" }}>
+        <label style={{ fontWeight: 600, color: "#3730a3", fontSize: 16 }}>
           Email
           <input
             name="email"
@@ -144,13 +174,14 @@ export function SubscriberForm() {
             placeholder="Your email address"
             required
             style={{
-              marginTop: 6,
-              padding: "10px 12px",
-              borderRadius: 8,
-              border: "1px solid #c7d2fe",
-              fontSize: 16,
+              marginTop: 8,
+              padding: "12px 14px",
+              borderRadius: 10,
+              border: "1.5px solid #a5b4fc",
+              fontSize: 17,
               outline: "none",
               background: "#fff",
+              boxShadow: "0 1px 4px rgba(99,102,241,0.07)",
               transition: "border 0.2s",
             }}
           />
@@ -159,19 +190,49 @@ export function SubscriberForm() {
           type="submit"
           disabled={loading}
           style={{
-            padding: "12px 0",
-            borderRadius: 8,
+            padding: "14px 0",
+            borderRadius: 10,
             border: "none",
-            background: loading ? "#a5b4fc" : "#6366f1",
+            background: loading
+              ? "#a5b4fc"
+              : "linear-gradient(90deg,#6366f1 0%,#818cf8 100%)",
             color: "#fff",
-            fontWeight: 600,
-            fontSize: 18,
+            fontWeight: 700,
+            fontSize: 19,
             cursor: loading ? "not-allowed" : "pointer",
-            boxShadow: "0 2px 8px rgba(99,102,241,0.08)",
+            boxShadow: "0 2px 12px rgba(99,102,241,0.13)",
             transition: "background 0.2s",
+            letterSpacing: 0.5,
           }}
         >
-          {loading ? "Sending..." : "Send"}
+          {loading ? (
+            <span>
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 50 50"
+                style={{ verticalAlign: "middle", marginRight: 8 }}
+              >
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="20"
+                  fill="none"
+                  stroke="#fff"
+                  strokeWidth="5"
+                  strokeDasharray="31.4 31.4"
+                  strokeLinecap="round"
+                  style={{ animation: "spin 1s linear infinite" }}
+                />
+                <style>
+                  {`@keyframes spin { 100% { transform: rotate(360deg); } }`}
+                </style>
+              </svg>
+              Sending...
+            </span>
+          ) : (
+            "Send"
+          )}
         </button>
       </form>
       {showToast && (
@@ -190,6 +251,19 @@ export function SubscriberForm() {
           />
         </div>
       )}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 12,
+          left: "50%",
+          transform: "translateX(-50%)",
+          fontSize: 13,
+          color: "#6366f1",
+          opacity: 0.7,
+        }}
+      >
+        We respect your privacy. Unsubscribe anytime.
+      </div>
     </div>
   )
 }
