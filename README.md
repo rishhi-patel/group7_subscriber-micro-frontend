@@ -1,6 +1,8 @@
 # Subscriber Micro‑Frontend
 
-![1755276590118](image/README/1755276590118.png)
+<img width="2559" height="1572" alt="image" src="https://github.com/user-attachments/assets/e90b5f30-40e9-42fa-bf87-a423b7962da6" />
+<img width="2559" height="1599" alt="image" src="https://github.com/user-attachments/assets/0e3934a5-9936-4a84-a9a1-15c85f91f075" />
+
 ![1755277112426](image/README/1755277112426.png)
 
 Autonomous micro‑frontend to collect subscribers and store them in MySQL. Includes:
