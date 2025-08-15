@@ -1,25 +1,23 @@
 - name: bootstrap mysql
   hosts: localhost
   gather_facts: false
-  become: true
-
-  vars:
-    compose_files:
-      - mysql-adminer.yml
-
+  become: yes
+  become_method: sudo
+  become_ask_pass: yes
   tasks:
-    - name: Update apt cache
-      ansible.builtin.apt:
-        update_cache: yes
-
-    - name: Install required packages
-      ansible.builtin.apt:
-        name:
-          - mysql-client
-          - python3-pip
+    - name: docker compose up
+      community.docker.docker_compose_v2:
+        project_src: .
+        files:
+          - mysql-adminer.yml
         state: present
-
-    - name: Install python connectors and app deps
+        remove_orphans: yes
+    - name: Install mysql-client
+      ansible.builtin.package:
+        name: mysql-client
+        update_cache: yes
+        state: present
+    - name: Install mysql python connectors
       ansible.builtin.pip:
         name:
           - pymysql
@@ -27,16 +25,7 @@
           - fastapi
           - uvicorn
           - pydantic
-
-    - name: Compose up mysql/adminer
-      community.docker.docker_compose_v2:
-        project_src: .
-        files: "{{ compose_files }}"
-        state: present
-        remove_orphans: true
-
-    - name: Install nektos/act
-      ansible.builtin.shell: |
-        curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | bash
+    - name: install nektos/act
+      ansible.builtin.shell: curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | bash
       args:
         creates: bin/act

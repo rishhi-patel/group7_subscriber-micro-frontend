@@ -1,33 +1,34 @@
+import os
 from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
-from opentelemetry.sdk.resources import Resource
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
-import os
+from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+from opentelemetry.instrumentation.mysql import MySQLInstrumentor
 
 
 def setup_opentelemetry():
-    """Initialize OpenTelemetry with OTLP HTTP exporter and explicit service.name"""
-    # Endpoint can be full path for HTTP exporter, e.g. http(s)://host:4318/v1/traces
+    """Initialize OpenTelemetry with OTLP HTTP exporter"""
+
+    # Get configuration from environment variables
     otel_endpoint = os.getenv(
         "OTEL_EXPORTER_OTLP_ENDPOINT", "https://otel.exotrend.live/v1/traces")
+    service_name = os.getenv("OTEL_SERVICE_NAME", "subscriber-micro-frontend")
 
-    # Prefer OTEL_SERVICE_NAME if provided; default to a stable name
-    service_name = os.getenv("OTEL_SERVICE_NAME", "subscriber-service")
+    # Initialize tracing
+    trace.set_tracer_provider(TracerProvider())
+    trace.get_tracer_provider().add_span_processor(
+        BatchSpanProcessor(OTLPSpanExporter(endpoint=otel_endpoint))
+    )
 
-    resource = Resource.create({
-        "service.name": service_name,
-        # nice-to-haves:
-        "service.namespace": "microfrontend",
-        "service.version": os.getenv("SERVICE_VERSION", "1.0.0"),
-        "deployment.environment": os.getenv("ENV", "local"),
-    })
+    return trace.get_tracer(__name__)
 
-    provider = TracerProvider(resource=resource)
-    trace.set_tracer_provider(provider)
 
-    # HTTPS ok; for HTTP use insecure=True
-    exporter = OTLPSpanExporter(endpoint=otel_endpoint)
-    provider.add_span_processor(BatchSpanProcessor(exporter))
+def instrument_fastapi(app):
+    """Instrument FastAPI application"""
+    FastAPIInstrumentor.instrument_app(app)
 
-    return trace.get_tracer(service_name)
+
+def instrument_mysql():
+    """Instrument MySQL operations"""
+    MySQLInstrumentor().instrument()
