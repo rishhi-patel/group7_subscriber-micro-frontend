@@ -37,11 +37,11 @@ export function SubscriberForm() {
         maxWidth: 420,
         margin: "48px auto",
         padding: 40,
-        background: "linear-gradient(135deg, #f3f4f6 0%, #dbeafe 100%)",
+        background: "linear-gradient(135deg, #f9fafc 0%, #a7f3d0 100%)",
         borderRadius: 24,
-        boxShadow: "0 8px 32px rgba(60,72,88,0.18)",
+        boxShadow: "0 8px 32px rgba(34,197,94,0.18)",
         fontFamily: "Segoe UI, Arial, sans-serif",
-        border: "1px solid #e0e7ff",
+        border: "1px solid #6ee7b7",
         position: "relative",
       }}
     >
@@ -60,7 +60,7 @@ export function SubscriberForm() {
           fill="none"
           style={{ marginRight: 10 }}
         >
-          <circle cx="12" cy="12" r="12" fill="#6366f1" />
+          <circle cx="12" cy="12" r="12" fill="#10b981" />
           <path
             d="M7 12l3 3 7-7"
             stroke="#fff"
@@ -70,7 +70,7 @@ export function SubscriberForm() {
           />
         </svg>
         <h2
-          style={{ margin: 0, color: "#3730a3", fontWeight: 700, fontSize: 26 }}
+          style={{ margin: 0, color: "#065f46", fontWeight: 700, fontSize: 26 }}
         >
           Subscribe to Updates
         </h2>
@@ -147,7 +147,7 @@ export function SubscriberForm() {
           gap: 22,
         }}
       >
-        <label style={{ fontWeight: 600, color: "#3730a3", fontSize: 16 }}>
+        <label style={{ fontWeight: 600, color: "#065f46", fontSize: 16 }}>
           Name
           <input
             name="name"
@@ -157,16 +157,16 @@ export function SubscriberForm() {
               marginTop: 8,
               padding: "12px 14px",
               borderRadius: 10,
-              border: "1.5px solid #a5b4fc",
+              border: "1.5px solid #6ee7b7",
               fontSize: 17,
               outline: "none",
               background: "#fff",
-              boxShadow: "0 1px 4px rgba(99,102,241,0.07)",
+              boxShadow: "0 1px 4px rgba(16,185,129,0.07)",
               transition: "border 0.2s",
             }}
           />
         </label>
-        <label style={{ fontWeight: 600, color: "#3730a3", fontSize: 16 }}>
+        <label style={{ fontWeight: 600, color: "#065f46", fontSize: 16 }}>
           Email
           <input
             name="email"
@@ -177,11 +177,11 @@ export function SubscriberForm() {
               marginTop: 8,
               padding: "12px 14px",
               borderRadius: 10,
-              border: "1.5px solid #a5b4fc",
+              border: "1.5px solid #6ee7b7",
               fontSize: 17,
               outline: "none",
               background: "#fff",
-              boxShadow: "0 1px 4px rgba(99,102,241,0.07)",
+              boxShadow: "0 1px 4px rgba(16,185,129,0.07)",
               transition: "border 0.2s",
             }}
           />
@@ -194,13 +194,13 @@ export function SubscriberForm() {
             borderRadius: 10,
             border: "none",
             background: loading
-              ? "#a5b4fc"
-              : "linear-gradient(90deg,#6366f1 0%,#818cf8 100%)",
+              ? "#6ee7b7"
+              : "linear-gradient(90deg,#10b981 0%,#34d399 100%)",
             color: "#fff",
             fontWeight: 700,
             fontSize: 19,
             cursor: loading ? "not-allowed" : "pointer",
-            boxShadow: "0 2px 12px rgba(99,102,241,0.13)",
+            boxShadow: "0 2px 12px rgba(16,185,129,0.13)",
             transition: "background 0.2s",
             letterSpacing: 0.5,
           }}
@@ -258,7 +258,7 @@ export function SubscriberForm() {
           left: "50%",
           transform: "translateX(-50%)",
           fontSize: 13,
-          color: "#6366f1",
+          color: "#10b981",
           opacity: 0.7,
         }}
       >
